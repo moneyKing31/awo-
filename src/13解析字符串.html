@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 需求：http://www.baidu.com?name=zhangsan&age=18&sex=nan#， 封装一个函数，将该地址里的参数解析出来,并以对象形式输出 */
+        let url = 'http://www.baidu.com?name=zhangsan&age=18&sex=nan#';
+        const parse = (url) => {
+            let obj = {}
+            let newUrl = url.split('?')[1].replace('#', '')
+            newUrl = newUrl.split('&')
+            newUrl.forEach(item => {
+                const k = item.split('=')[0];
+                const val = item.split('=')[1];
+                obj[k] = val
+            })
+            return obj
+        }
+        console.log(parse(url));
+    </script>
+</body>
+
+</html>
