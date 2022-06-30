@@ -1,47 +1,74 @@
 <template>
-    <div>
-        <h3>{{ nam }}中最多的字符是:{{ num }}</h3>
-        <button @click="reduceFn">点击查看出现最多的字符是多少</button><br>
-        <h3>{{ arr }}数组的和是：{{ age }}</h3>
-        <button @click="reduceEn">点击查看数组和</button>
+    <div id="app">
+        <table class="tb">
+            <tr>
+                <th>编号</th>
+                <th>品牌名称</th>
+                <th>创立时间</th>
+                <th>操作</th>
+            </tr>
+            <!-- 循环渲染的元素tr -->
+            <tr v-for="item in list" :key="item.id">
+                <td>{{ item.id }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.time }}</td>
+                <td>
+                    <button @click="btnFn(item.id)">删除</button>
+                </td>
+            </tr>
+            <tr v-if="list.length === 0">
+                <td colspan="4">没有数据咯~</td>
+            </tr>
+        </table>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'App',
     data() {
         return {
-            num: '',
-            age: '',
-            nam: 'qqqqqwertyuierqweasd',
-            arr: [{ a: 100 }, { a: 20 }, { a: -10 }],
-            nun:''
-        }
+            list: [
+                { id: 1, name: "奔驰", time: "2020-08-01" },
+                { id: 2, name: "宝马", time: "2020-08-02" },
+                { id: 3, name: "奥迪", time: "2020-08-03" },
+            ],
+        };
     },
-    methods: {
-        reduceEn() {
-            this.age = this.arr.reduce(function (pre, curr) {
-                return pre + curr.a
-            }, 0)
-        },
-        reduceFn() {
-            let a = this.nam.split('')
-            // let max = null;    //出现次数最多的元素
-            // let nun = '';    //该元素出现次数
-            console.log(a);
-            this.num = a.reduce(function (p, k) {    //reduce遍历
-                p[k] ? p[k]++ : p[k] = 1;  //k代表当前正在遍历的元素。应用到p[k]里，k表示p对象里的一个键，p[k]表示该键对应的值。
-                if (p[k] > nun) {
-                    nun = p[k]
-                    max = k
-                }
-                return nun    //最后返回一个对象
-            }, {})
+    methods:{
+        btnFn(id){
+            const index=this.list.findIndex((ele)=>ele.id==id);
+            this.list.splice(index,1);
         }
     }
-}
+};
 </script>
 
 <style>
+#app {
+    width: 600px;
+    margin: 10px auto;
+}
+
+.tb {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.tb th {
+    background-color: #0094ff;
+    color: white;
+}
+
+.tb td,
+.tb th {
+    padding: 5px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.add {
+    padding: 5px;
+    border: 1px solid black;
+    margin-bottom: 10px;
+}
 </style>

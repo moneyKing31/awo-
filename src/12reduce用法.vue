@@ -16,7 +16,7 @@ export default {
             age: '',
             nam: 'qqqqqwertyuierqweasd',
             arr: [{ a: 100 }, { a: 20 }, { a: -10 }],
-            nun:''
+            nun: ''
         }
     },
     methods: {
@@ -27,16 +27,16 @@ export default {
         },
         reduceFn() {
             let a = this.nam.split('')
-            // let max = null;    //出现次数最多的元素
+            let max = null;    //出现次数最多的元素
             // let nun = '';    //该元素出现次数
             console.log(a);
-            this.num = a.reduce(function (p, k) {    //reduce遍历
+            this.num = a.reduce((p, k) => {    //reduce遍历
                 p[k] ? p[k]++ : p[k] = 1;  //k代表当前正在遍历的元素。应用到p[k]里，k表示p对象里的一个键，p[k]表示该键对应的值。
-                if (p[k] > nun) {
-                    nun = p[k]
+                if (p[k] > this.nun) {
+                    this.nun = p[k]
                     max = k
                 }
-                return nun    //最后返回一个对象
+                return p    //最后返回一个对象
             }, {})
         }
     }
