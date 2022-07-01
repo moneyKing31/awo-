@@ -71,7 +71,7 @@ export default {
     computed: {
         allprice() {
             return this.arr.reduce((p, k) => {
-                return (p += k['price'] * k['count'])
+                return (p += k.price * k.count)
             }, 0)
             // console.log(aa);
         }

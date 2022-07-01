@@ -28,7 +28,7 @@ export default {
             // if (!value) return ''
             return (value / 10000).toFixed(4) + '万'
         },
-        time1(val,va) {
+        time1(val, va) {
             return moment(val).format(`YYYY ${va} MM ${va} DD`)
         }
     }
