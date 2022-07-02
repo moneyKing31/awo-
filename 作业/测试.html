@@ -10,8 +10,29 @@
 
 <body>
     <h2>22222</h2>
-    <!-- 书写深拷贝 -->
-    <script type="text/javascript">
+    <!-- instanceof 模拟实现原理 -->
+    <script>
+        function new_instance_of(a, b) {
+            let rightProto = b.prototype; // 取右表达式的 prototype 值
+            a = a.__proto__; // 取左表达式的__proto__值
+            while (true) {
+                //一直找到顶级对象都不匹配返回false
+                if (a === null) {
+                    return false;
+                }
+                // 实例对象.__proto__=构造函数.prototype，判断a是b的实例对象
+                if (a === rightProto) {
+                    return true;
+                }
+                // 该层级不匹配继续上一级查找
+                a = a.__proto__
+            }
+        }
+
+    </script>
+
+    <!-- 书写深拷贝 =================-->
+    <!-- <script type="text/javascript">
         // 1.请补全JavaScript代码，要求实现对象参数的深拷贝并返回拷贝之后的新对象
         const _completeDeepClone = (target, map = new Map()) => {
             // 判断值不为null且类型为对象
@@ -33,9 +54,9 @@
             return cloneTarget
 
         }
-    </script>
-    
-    
+    </script> -->
+
+
     <!-- //this指向================== -->
     <!-- <script>
         function fn() {
