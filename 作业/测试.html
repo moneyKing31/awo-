@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>22222</h2>
+    <!-- 书写深拷贝 -->
+    <script type="text/javascript">
+        // 1.请补全JavaScript代码，要求实现对象参数的深拷贝并返回拷贝之后的新对象
+        const _completeDeepClone = (target, map = new Map()) => {
+            // 判断值不为null且类型为对象
+            if (target === null) return target
+            if (typeof target !== 'object') return target
+            // 拿到原型对象
+            const constructor = target.constructor
+            //判断是否为函数、正则、日期、ES6新对象其中之一
+            if (/^(Function|RegExp|Date|Map|Set)$/i.test(constructor.name)) return new constructor(target)
+            if (map.get(target)) return map.get(target)
+            map.set(target, true)
+            //根据类型是否是数组决定创建对象的情况
+            const cloneTarget = Array.isArray(target) ? [] : {}
+            for (prop in target) {
+                if (target.hasOwnProperty(prop)) {
+                    cloneTarget[prop] = _completeDeepClone(target[prop], map)
+                }
+            }
+            return cloneTarget
+
+        }
+    </script>
+    
+    
+    <!-- //this指向================== -->
+    <!-- <script>
+        function fn() {
+            console.log(this);
+        }
+        const obj = {
+            name: "test",
+            a() {
+                console.log(this.a);
+                setTimeout(function () {
+                    console.log(this.a);
+                }, 1000);
+            },
+            b() {
+                console.log(this);
+                fn();
+            },
+        };
+        obj.a();
+        obj.b();
+    </script> -->
+</body>
+
+</html>

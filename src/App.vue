@@ -94,8 +94,8 @@ export default {
             this.arr = []
             // this.arr.forEach((ele) => (ele.c = val))
         },
-        empty(){
-            this.list=[]
+        empty() {
+            this.list = []
         }
 
     },
@@ -105,7 +105,8 @@ export default {
                 this.list.forEach((ele) => (ele.c = val))
             },
             get() {
-                return this.list.every((ele) => ele.c)
+                return (this.list.length == 0) ? false
+                    : this.list.every((ele) => ele.c)
             }
         },
         allprice() {
