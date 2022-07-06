@@ -1,28 +1,32 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <button @click="comName = 'UserName'" style="margin: 10px;">手机号注册</button>
+    <button @click="comName = 'UserInfo'" style="margin-bottom: 10px;">邮箱注册</button>
+
+    <div style="border: 1px solid blue;">
+      <keep-alive>
+        <component :is="comName"></component>
+      </keep-alive>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import UserName from './components/01/UserInfo.vue'
+import UserInfo from './components/01/UserName.vue'
 export default {
-  name: 'App',
+  data() {
+    return {
+      value: '',
+      comName: "UserName"
+    };
+  },
   components: {
-    HelloWorld
+    UserName,
+    UserInfo
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
